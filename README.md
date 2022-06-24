@@ -1,4 +1,6 @@
-# Image-Acquisition-from-Web-Camera
+### EX NO : 02
+### DATE  : 08.04.2022
+# <p align="center">Image-Acquisition-from-Web-Camera</p>
 ## Aim
  
 Aim:
@@ -11,132 +13,127 @@ iv) Rotate and display the video
 
 ## Software Used
 Anaconda - Python 3.7
-
 ## Algorithm
-
 ### Step 1:
-Import cv2 and capture the video using cv2.VideoCapture(0)
+Use VideoCapture(0) to access web camera
 
 ### Step 2:
-Write the captured image using cv2.imwrite("Fawziya.jpg",frame)
+Use imread to read the video or image
 
 ### Step 3:
-Resize the image using cv2.resize(frame, (0,0), fx = 0.5, fy=0.5)
+Use imwrite to save the image
 
 ### Step 4:
-display the image until the loop gets over
+Use imshow to show the video
 
 ### Step 5:
-Rotate the image using cv2.rotate(smaller_frame,cv2.cv2.ROTATE_180)
+End the program and close the output video windows by pressing 'q'.
+
+<br/>
+<br/>
 
 ## Program:
-
- Python
- 
+``` Python
 ### Developed By: Fawziya A
 ### Register No: 212220230017
 
-
 ## i) Write the frame as JPG file
-```
-import cv2
 
-videoCaptureObject = cv2.VideoCapture(0)
-ret,frame = videoCaptureObject.read()
-cv2.imwrite("Fawziya.jpg",frame)
-```
+
+import cv2
+import numpy as np
+cap=cv2.VideoCapture(0)
+ret,frame=cap.read()
+cv2.imwrite("pic_1.jpg",frame)
+cap.release()
+cv2.destroyAllWindows()
+
 
 ## ii) Display the video
-```
+
+
 import cv2
 import numpy as np
-
-cap = cv2.VideoCapture(0)
-
-
+cap=cv2.VideoCapture(0)
 while True:
-    ret, frame = cap.read()
-
-    cv2.imshow("Fawziya",frame)
-    if cv2.waitKey(1) & 0xFF == ord('q'):
+    ret,frame=cap.read()
+    cv2.imshow('frame',frame)
+    if cv2.waitKey(1)==ord('q'):
         break
-
-videoCaptureObject.release()
+cap.release()
 cv2.destroyAllWindows()
-```
+
 
 ## iii) Display the video by resizing the window
-```
+
+
 import cv2
 import numpy as np
-
-cap = cv2.VideoCapture(0)
-
+cap=cv2.VideoCapture(0)
 while True:
-    ret, frame = cap.read()
-    width = int(cap.get(3))
-    height = int(cap.get(4))
-    
-    image = np.zeros(frame.shape, np.uint8)
-    smaller_frame = cv2.resize(frame, (0,0), fx = 0.5, fy=0.5)
-    image[:height//2, :width//2] = smaller_frame
-    image[height//2:, :width//2] = smaller_frame
-    image[:height//2, width//2:] = smaller_frame
-    image[height//2:, width//2:] = smaller_frame
-
-    image[:height//2, :width//2] = cv2.rotate(smaller_frame,cv2.cv2.ROTATE_180)
-
-    cv2.imshow("Fawziya.jpg",image)
-    if cv2.waitKey(1) & 0xFF == ord('q'):
+    ret,frame=cap.read()
+    width=int(cap.get(3))
+    height=int(cap.get(4))
+    image=np.zeros(frame.shape,np.uint8)
+    smaller_frame=cv2.resize(frame,(0,0),fx=0.5,fy=0.5)
+    image[:height//2,:width//2]=smaller_frame
+    image[height//2: , :width//2]=smaller_frame
+    image[:height//2,width//2:]= smaller_frame
+    image[height//2:,width//2:]=smaller_frame
+    cv2.imshow('frame',image)
+    if cv2.waitKey(1)==ord('q'):
         break
-
-videoCaptureObject.release()
+cap.release()
 cv2.destroyAllWindows()
-```
+
 
 ## iv) Rotate and display the video
-```
+
 import cv2
 import numpy as np
-
-cap = cv2.VideoCapture(0)
-
+cap=cv2.VideoCapture(0)
 while True:
-    ret, frame = cap.read()
-    width = int(cap.get(3))
-    height = int(cap.get(4))
-    
-    image = np.zeros(frame.shape, np.uint8)
-    smaller_frame = cv2.resize(frame, (0,0), fx = 0.5, fy=0.5)
-    image[:height//2, :width//2] = smaller_frame
-
-    image[:height//2, :width//2] = cv2.rotate(smaller_frame,cv2.cv2.ROTATE_180)
-
-    cv2.imshow("Fawziya.jpg",image)
-    if cv2.waitKey(1) & 0xFF == ord('q'):
+    ret,frame=cap.read()
+    width=int(cap.get(3))
+    height=int(cap.get(4))
+    image=np.zeros(frame.shape,np.uint8)
+    smaller_frame=cv2.resize(frame,(0,0),fx=0.5,fy=0.5)
+    image[:height//2,:width//2]=image[:height//2, :width//2] = cv2.rotate(smaller_frame,cv2.cv2.ROTATE_180)
+    image[height//2: , :width//2]=smaller_frame
+    image[:height//2,width//2:]= image[:height//2, :width//2] = cv2.rotate(smaller_frame,cv2.cv2.ROTATE_180)
+    image[height//2:,width//2:]=smaller_frame
+    cv2.imshow('frame',image)
+    if cv2.waitKey(1)==ord('q'):
         break
-
-videoCaptureObject.release()
+cap.release()
 cv2.destroyAllWindows()
-```
 
+```
 ## Output
 
 ### i) Write the frame as JPG image
 
-![image](https://user-images.githubusercontent.com/75235022/161386028-28056ad6-515b-4c84-9f8b-6660a5200f68.png)
+![Screenshot (13)](https://user-images.githubusercontent.com/75235488/161477012-5b919f6e-36da-4927-bbc0-644dc6000388.png)
 
 ### ii) Display the video
 
-![image](https://user-images.githubusercontent.com/75235022/161386035-eb50c5d2-d1c0-4d95-ae47-c9d8275d3e93.png)
+![Screenshot (14)](https://user-images.githubusercontent.com/75235488/161477037-4d807f9d-c1b0-41f9-bca1-2b38264e4586.png)
 
 ### iii) Display the video by resizing the window
 
-![image](https://user-images.githubusercontent.com/75235022/161386040-b568b6ce-b532-44df-aace-828c046b4f17.png)
+![Screenshot (15)](https://user-images.githubusercontent.com/75235488/161477060-b9312bb4-3ce7-4f12-8b4d-fadb1516a2cc.png)
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
 
 ### iv) Rotate and display the video
 
-![image](https://user-images.githubusercontent.com/75235022/161386045-b4a3eff7-2f4e-4907-bb3d-4a2eda38d7bb.png)
+![Screenshot (18)](https://user-images.githubusercontent.com/75235488/161477085-d0c6aca2-becf-467b-a367-65e0dfac7a75.png)
 
 ## Result:
 Thus the image is accessed from webcamera and displayed using openCV.
